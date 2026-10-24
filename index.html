@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RastreioHub | Acesso ao Portal</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #f7f9ff;
+      background: #080e1c;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 25px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #26324a;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: #4d9aff; }
+
+    .header-text {
+      color: #8e9db8;
+      font-size: 13px;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 55px 20px;
+      background:
+        radial-gradient(circle at 50% 30%, #17315b, transparent 60%),
+        #080e1c;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 430px;
+      padding: 42px 36px;
+      background: #141e32;
+      border: 1px solid #2b3954;
+      border-radius: 22px;
+      box-shadow: 0 30px 80px #0006;
+    }
+
+    .icon-box {
+      width: 65px;
+      height: 65px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 25px;
+      border-radius: 18px;
+      background: #213e6a;
+      font-size: 31px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 27px;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #9caac2;
+      line-height: 1.6;
+      font-size: 14px;
+      margin: 13px 0 32px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 9px;
+      color: #dce5f7;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #364663;
+      border-radius: 10px;
+      background: #0e1728;
+      color: white;
+      font-size: 15px;
+      outline: none;
+      margin-bottom: 22px;
+    }
+
+    input:focus {
+      border-color: #4d9aff;
+    }
+
+    input::placeholder { color: #65758e; }
+
+    button {
+      width: 100%;
+      border: none;
+      padding: 16px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #357cff, #55b0ff);
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover { filter: brightness(1.1); }
+
+    .message {
+      margin-top: 18px;
+      color: #b8d3fa;
+      background: #1a2e4b;
+      padding: 13px;
+      border-radius: 9px;
+      font-size: 13px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .security {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 12px;
+      color: #8494af;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 24px 7%;
+      border-top: 1px solid #26324a;
+      font-size: 13px;
+      color: #8899b6;
+    }
+
+    footer a {
+      color: #79b5ff;
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 500px) {
+      header { padding: 20px; }
+      .header-text { display: none; }
+      .login-card { padding: 35px 23px; }
+      footer { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">Rastreio<span>Hub</span></div>
+    <div class="header-text">Gestão inteligente de encomendas</div>
+  </header>
+
+  <main>
+    <section class="login-card">
+      <div class="icon-box">📦</div>
+
+      <h1>Acesse sua conta</h1>
+
+      <p class="subtitle">
+        Centralize seus pedidos e acompanhe
+        suas entregas em um só lugar.
+      </p>
+
+      <form id="loginForm">
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="seuemail@exemplo.com"
+          autocomplete="off"
+          required
+        >
+
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Digite sua senha"
+          autocomplete="off"
+          required
+        >
+
+        <button type="submit">Entrar no portal →</button>
+      </form>
+
+      <div class="message" id="message" hidden role="status">
+        O acesso de usuários ainda não está habilitado.
+        Nenhuma credencial foi enviada ou armazenada.
+      </div>
+
+      <div class="security">
+        🔒 Ambiente de acesso ao RastreioHub
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 RastreioHub</span>
+    <span>
+      Serviço de consulta:
+      <a href="https://www.siterastreio.com.br/" target="_blank">Rastreamento</a>
+    </span>
+  </footer>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("password").value = "";
+      document.getElementById("message").hidden = false;
+    });
+  </script>
+
+</body>
+</html>
